@@ -14,6 +14,13 @@
     .soon-label { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; font-weight: 300; color: #fff; margin-bottom: 32px; text-align: center; max-width: 440px; line-height: 1.5; }
     .soon-back { font-family: Helvetica, Arial, sans-serif; font-size: 18px; letter-spacing: -0.02em; color: #fff; text-decoration: none; transition: color 0.2s; margin-top: 80px; }
     .soon-back:hover { color: rgba(255,255,255,0.7); }
+    .break-web { display: inline; }
+    .break-mobile { display: none; }
+    @media (max-width: 768px) {
+      .break-web { display: none; }
+      .break-mobile { display: inline; }
+    }
+
     #catalog-app { display: none; }
     body { background: #f5f2eb; font-family: 'Cormorant Garamond', serif; font-weight: 300; }
     .sidebar { width: 180px; flex-shrink: 0; height: 100vh; overflow-y: auto; background: #f5f2eb; border-right: 1px solid rgba(0,0,0,0.08); padding: 32px 20px 40px; display: flex; flex-direction: column; gap: 0; }
@@ -86,8 +93,8 @@
     <div class="orb-soon">
       <img src="https://i.imgur.com/olbhr2B.jpeg" style="object-position:50% 40%;" alt="">
     </div>
-    <p class="soon-label">A growing archive of what I find under the lens, <br> check back soon.</p>
-    <a class="soon-back" href="newsletter.html" style="text-decoration:underline;text-underline-offset:4px;">Loupe me in</a>
+    <p class="soon-label">A growing archive of what I find under the lens — check back soon.</p>
+    <a class="soon-back" href="newsletter.html" style="text-decoration:underline;text-underline-offset:4px;">loupe me in</a>
   </div>
 
   <!-- CATALOG APP — hidden until ready, remove display:none to launch -->
