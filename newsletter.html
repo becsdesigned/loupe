@@ -6,7 +6,7 @@
   <title>Loupe — Subscribe</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Fragment+Mono:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <script src="https://js.stripe.com/v3/"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -19,7 +19,6 @@
       overflow-x: hidden;
     }
 
-    /* ── GALLERY ── */
     .gallery {
       position: relative;
       width: 100%;
@@ -42,7 +41,6 @@
       border-radius: 50%;
     }
 
-    /* ── TWO-COLUMN CONTENT ── */
     .content-wrap {
       background: #000;
       padding: 20px 5vw 100px;
@@ -56,68 +54,6 @@
       margin: 0 auto;
     }
 
-    /* LEFT */
-    .issue-number {
-      font-size: 14px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 32px;
-    }
-    .issue-number::before {
-      content: '';
-      display: block;
-      width: 20px; height: 1px;
-      background: rgba(255,255,255,0.25);
-    }
-
-    .headline {
-      font-family: Helvetica, Arial, sans-serif;
-      font-weight: 300;
-      font-size: clamp(3.2rem, 5vw, 5rem);
-      line-height: 1.06;
-      letter-spacing: -0.01em;
-      margin-bottom: 36px;
-    }
-    .headline em {
-      font-style: italic;
-      color: rgba(255,255,255,0.5);
-    }
-
-    .description {
-      font-size: 16px;
-      line-height: 2.1;
-      color: rgba(255,255,255,0.75);
-      margin-bottom: 40px;
-    }
-
-    .specimen {
-      border-top: none;
-    }
-    .specimen-item {
-      display: flex;
-      gap: 16px;
-      padding: 6px 0;
-      border-bottom: none;
-      font-size: 16px;
-    }
-    .specimen-num {
-      font-size: 13px;
-      color: rgba(255,255,255,0.75);
-      padding-top: 2px;
-      min-width: 18px;
-    }
-    .specimen-text { line-height: 1.8; color: rgba(255,255,255,0.75); }
-    .specimen-text strong {
-      display: block;
-      color: rgba(255,255,255,0.75);
-      margin-bottom: 2px;
-    }
-
-    /* RIGHT */
     .panel-right {
       display: flex;
       flex-direction: column;
@@ -143,48 +79,17 @@
       background: rgba(255,255,255,0.2);
     }
 
-    .price-row {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-    }
-    .price {
-      font-family: Helvetica, Arial, sans-serif;
-      font-size: 1.4rem;
-      font-weight: 400;
-      line-height: 1;
-    }
-    .price sup {
-      font-size: 0.8rem;
-      font-family: Helvetica, Arial, sans-serif;
-      opacity: 0.7;
-      vertical-align: super;
-    }
-    .price-period {
-      font-size: 14px;
-      letter-spacing: 0.1em;
-      color: rgba(255,255,255,0.75);
-      text-transform: uppercase;
-    }
+    .form-fields { display: flex; flex-direction: column; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
 
-    .form-fields {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
     label {
       font-size: 13px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.75);
     }
-    input[type="text"],
-    input[type="email"] {
+
+    input[type="text"], input[type="email"] {
       width: 100%;
       padding: 11px 13px;
       background: rgba(255,255,255,0.03);
@@ -208,17 +113,11 @@
     .stripe-field.focused { border-color: rgba(255,255,255,0.45); }
 
     #subscribe-btn {
-      width: 140px;
-      height: 140px;
+      width: 140px; height: 140px;
       border-radius: 50%;
-      padding: 0;
-      background: none;
-      border: none;
-      cursor: pointer;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 0; background: none; border: none;
+      cursor: pointer; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
       transition: opacity 0.2s, transform 0.1s;
     }
     #subscribe-btn:hover { opacity: 0.86; }
@@ -226,60 +125,35 @@
     #subscribe-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
     .secure-note {
-      font-size: 13px;
-      letter-spacing: 0.08em;
+      font-size: 13px; letter-spacing: 0.08em;
       color: rgba(255,255,255,0.75);
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
+      text-align: center; display: flex;
+      align-items: center; justify-content: center; gap: 6px;
     }
 
     .spinner {
       width: 11px; height: 11px;
       border: 1.5px solid rgba(0,0,0,0.12);
-      border-top-color: #000;
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      display: none;
+      border-top-color: #000; border-radius: 50%;
+      animation: spin 0.7s linear infinite; display: none;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
     #subscribe-btn.loading .spinner { display: block; }
-    #subscribe-btn.loading .btn-label,
-    #subscribe-btn.loading .btn-arrow { display: none; }
+    #subscribe-btn.loading .btn-label, #subscribe-btn.loading .btn-arrow { display: none; }
 
-    #payment-message {
-      font-size: 16px;
-      padding: 11px 13px;
-      display: none;
-      margin-bottom: 14px;
-    }
-    #payment-message.error {
-      display: block;
-      border: 1px solid rgba(220,80,70,0.3);
-      color: #e06058;
-    }
-    #payment-message.success {
-      display: block;
-      border: 1px solid rgba(76,175,137,0.3);
-      color: #4caf89;
-    }
+    #payment-message { font-size: 16px; padding: 11px 13px; display: none; margin-bottom: 14px; }
+    #payment-message.error { display: block; border: 1px solid rgba(220,80,70,0.3); color: #e06058; }
+    #payment-message.success { display: block; border: 1px solid rgba(76,175,137,0.3); color: #4caf89; }
 
     footer {
-      text-align: center;
-      padding: 60px 24px 48px;
-      font-size: 13px;
-      letter-spacing: 0.14em;
-      color: rgba(255,255,255,0.18);
-      text-transform: uppercase;
-      background: #000;
+      text-align: center; padding: 60px 24px 48px;
+      font-size: 13px; letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.18); text-transform: uppercase; background: #000;
     }
 
     @media (max-width: 768px) {
       .two-col { grid-template-columns: 1fr; gap: 48px; }
       .orb-catalog { width: 200px !important; height: 200px !important; }
-
       .panel-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 48px; }
       .orb { width: 200px; height: 200px; }
       .gallery { height: 1680px; }
@@ -301,100 +175,71 @@
 </head>
 <body>
 
-<!-- ── GALLERY SCROLL ── -->
 <div class="gallery">
-
-  <div class="orb orb-1" style="top:60px;left:8vw;">
-    <img src="https://i.imgur.com/DEHkytp.jpeg" style="object-position:20% 35%;" alt="">
-  </div>
-
-  <div class="orb orb-2" style="top:240px;right:11vw;">
-    <img src="https://i.imgur.com/W5H7jRu.png" style="object-position:50% 30%;" alt="">
-  </div>
-
-  <div class="orb orb-3" style="top:500px;left:38%;">
-    <img src="https://i.imgur.com/p1YDCB2.jpeg" style="object-position:50% 50%;" alt="">
-  </div>
-
-  <div class="orb orb-4" style="top:740px;left:4vw;">
-    <img src="https://i.imgur.com/olbhr2B.jpeg" style="object-position:40% 60%;" alt="">
-  </div>
-
+  <div class="orb orb-1" style="top:60px;left:8vw;"><img src="https://i.imgur.com/DEHkytp.jpeg" style="object-position:20% 35%;" alt=""></div>
+  <div class="orb orb-2" style="top:240px;right:11vw;"><img src="https://i.imgur.com/W5H7jRu.png" style="object-position:50% 30%;" alt=""></div>
+  <div class="orb orb-3" style="top:500px;left:38%;"><img src="https://i.imgur.com/p1YDCB2.jpeg" style="object-position:50% 50%;" alt=""></div>
+  <div class="orb orb-4" style="top:740px;left:4vw;"><img src="https://i.imgur.com/olbhr2B.jpeg" style="object-position:40% 60%;" alt=""></div>
   <a href="https://loupe.becsdesigned.com/catalog" class="orb-catalog" style="display:block;position:absolute;top:880px;right:5vw;border-radius:50%;overflow:hidden;width:280px;height:280px;">
     <img src="https://i.imgur.com/2sA8MAN.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;object-position:50% 50%;" alt="">
   </a>
-
-  <div class="orb orb-5" style="top:1120px;left:55%;">
-    <img src="https://i.imgur.com/DEHkytp.jpeg" style="object-position:60% 80%;" alt="">
-  </div>
-
-  <div class="orb orb-6" style="top:1360px;left:7vw;">
-    <img src="https://i.imgur.com/W5H7jRu.png" style="object-position:30% 50%;" alt="">
-  </div>
-
-  <div class="orb orb-7" style="top:1520px;left:42%;">
-    <img src="https://i.imgur.com/olbhr2B.jpeg" style="object-position:50% 40%;" alt="">
-  </div>
-
-  <div class="orb orb-8" style="top:1760px;right:9vw;">
-    <img src="https://i.imgur.com/p1YDCB2.jpeg" style="object-position:60% 20%;" alt="">
-  </div>
-
+  <div class="orb orb-5" style="top:1120px;left:55%;"><img src="https://i.imgur.com/DEHkytp.jpeg" style="object-position:60% 80%;" alt=""></div>
+  <div class="orb orb-6" style="top:1360px;left:7vw;"><img src="https://i.imgur.com/W5H7jRu.png" style="object-position:30% 50%;" alt=""></div>
+  <div class="orb orb-7" style="top:1520px;left:42%;"><img src="https://i.imgur.com/olbhr2B.jpeg" style="object-position:50% 40%;" alt=""></div>
+  <div class="orb orb-8" style="top:1760px;right:9vw;"><img src="https://i.imgur.com/p1YDCB2.jpeg" style="object-position:60% 20%;" alt=""></div>
 </div>
 
-<!-- ── TWO-COLUMN COPY + FORM ── -->
 <div class="content-wrap">
 
-  <!-- Circle sits above both columns -->
   <div style="max-width:1100px;margin:0 auto 48px;position:relative;display:inline-block;">
     <div class="orb" style="position:relative;width:280px;height:280px;">
       <img src="https://i.imgur.com/3t3UDVs.png" style="object-position:50% 50%;" alt="">
     </div>
   </div>
 
-  <!-- Description above both columns -->
   <div class="two-col" style="align-items:flex-start;margin-top:0;">
 
-    <!-- LEFT: description + price + info -->
+    <!-- LEFT -->
     <div style="display:flex;flex-direction:column;gap:32px;">
 
-      <!-- Description + Price tight together -->
       <div style="display:flex;flex-direction:column;gap:12px;">
-        <p style="font-size:22px;line-height:1.6;color:rgba(255,255,255,0.9);">
+        <!-- Cormorant italic — big description -->
+        <p style="font-size:22px;line-height:1.6;color:rgba(255,255,255,0.9);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;">
           Loupe is a monthly field guide documenting what I find under the microscope ⋆˚꩜｡
         </p>
+        <!-- Cormorant — price -->
         <span style="font-size:22px;font-weight:400;color:rgba(255,255,255,0.9);">$6.00 every month</span>
       </div>
 
-      <!-- How it works -->
       <div>
+        <!-- Fragment Mono — section header -->
         <p style="font-size:16px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:10px;">How it works</p>
+        <!-- Helvetica — bullets -->
         <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
           <li style="font-size:16px;line-height:1.7;color:rgba(255,255,255,0.9);display:flex;align-items:flex-start;"><span style="margin-right:8px;font-size:1.2rem;flex-shrink:0;margin-top:-4px;">⊹</span>Sign up for a monthly subscription (billed each month, cancellable any time)</li>
           <li style="font-size:16px;line-height:1.7;color:rgba(255,255,255,0.9);display:flex;align-items:flex-start;"><span style="margin-right:8px;font-size:1.2rem;flex-shrink:0;margin-top:-4px;">⊹</span>Receive Loupe in the mail each month</li>
         </ul>
       </div>
 
-      <!-- What to expect -->
       <div>
+        <!-- Fragment Mono — section header -->
         <p style="font-size:16px;font-weight:700;color:rgba(255,255,255,0.9);margin-bottom:10px;">What to expect</p>
+        <!-- Helvetica — bullets -->
         <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
-          <li style="font-size:16px;line-height:1.7;color:rgba(255,255,255,0.9);display:block;padding-left:24px;position:relative;"><span style="position:absolute;left:0;font-size:1.2rem;">⊹</span>Artwork inspired by the world around us through the lens of a microscope. One month could be a <a href="https://en.wikipedia.org/wiki/Risograph" target="_blank" style="color:rgba(255,255,255,0.9);text-decoration:underline;text-underline-offset:3px;">risograph</a> print of the pink slime in your shower or a <a href="https://en.wikipedia.org/wiki/Zine" target="_blank" style="color:rgba(255,255,255,0.9);text-decoration:underline;text-underline-offset:3px;">zine</a> exploring the ins and outs of your magnesium supplement.</li>
+          <li style="font-size:16px;line-height:1.7;color:rgba(255,255,255,0.9);display:block;padding-left:24px;position:relative;"><span style="position:absolute;left:0;font-size:1.2rem;">⊹</span>Artwork inspired by the world around us through the lens of a microscope. One month could be a <a href="https://en.wikipedia.org/wiki/Risograph" target="_blank" style="color:rgba(255,255,255,0.9);text-decoration:underline;text-underline-offset:3px;display:inline;">risograph</a> print of the pink slime in your shower or a <a href="https://en.wikipedia.org/wiki/Zine" target="_blank" style="color:rgba(255,255,255,0.9);text-decoration:underline;text-underline-offset:3px;display:inline;">zine</a> exploring the ins and outs of your magnesium supplement.</li>
           <li style="font-size:16px;line-height:1.7;color:rgba(255,255,255,0.9);display:flex;align-items:flex-start;"><span style="margin-right:8px;font-size:1.2rem;flex-shrink:0;margin-top:-4px;">⊹</span>A 'note from Becca'</li>
         </ul>
       </div>
 
-      <!-- Sign off -->
-      <p style="font-size:16px;font-style:italic;color:rgba(255,255,255,0.9);">And of course, all of this is Bec'd by science.</p>
+      <!-- Cormorant italic — sign off -->
+      <p style="font-size:18px;font-style:italic;color:rgba(255,255,255,0.9);font-family:'Cormorant Garamond',serif;font-weight:300;">And of course, all of this is Bec'd by science.</p>
 
     </div>
 
-    <!-- RIGHT: address + button -->
+    <!-- RIGHT -->
     <div class="panel-right">
       <div class="form-eyebrow">Shipping Address</div>
-
       <div id="payment-message"></div>
-
       <form id="payment-form">
         <div class="form-fields">
           <div class="form-group">
@@ -541,14 +386,8 @@
 
 <style>
 @media (max-width: 768px) {
-  .orb-catalog {
-    width: 200px !important;
-    height: 200px !important;
-  }
-  .orb-catalog img {
-    width: 200px !important;
-    height: 200px !important;
-  }
+  .orb-catalog { width: 200px !important; height: 200px !important; }
+  .orb-catalog img { width: 200px !important; height: 200px !important; }
 }
 </style>
 </body>
