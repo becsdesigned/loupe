@@ -528,6 +528,29 @@
     }
 
     .btn-add:hover { background: #0000cc; }
+
+    @media (max-width: 768px) {
+      .palette {
+        position: fixed;
+        left: 50%;
+        top: auto;
+        bottom: 40px;
+        transform: translateX(-50%);
+        flex-direction: row;
+        gap: 14px;
+      }
+    }
+
+    @media (hover: none) {
+      .circle-newsletter.tapped .circle-label {
+        opacity: 1;
+      }
+      .circle-newsletter.tapped {
+        background: var(--circle-hover) !important;
+        border: 2px solid var(--border);
+      }
+    }
+
   </style>
 
   <style>
@@ -571,7 +594,8 @@
     <div class="orbit-system">
       <a class="circle-newsletter" href="newsletter.html">
         <div class="circle-label">
-          <span class="circle-label-main">loupe newsletter</span>
+          <span class="circle-label-main">Loupe</span>
+          <span style="font-family:Helvetica,Arial,sans-serif;font-size:clamp(0.8rem,2vw,1.2rem);color:#ffffff;display:block;line-height:1.3;margin-bottom:6px;">newsletter</span>
           <span class="circle-label-sub">monthly field guide</span>
         </div>
       </a>
@@ -843,6 +867,36 @@
         dot.classList.add('active');
       });
     });
+  </script>
+
+  <script>
+    // Mobile tap-to-reveal then tap-to-navigate
+    (function() {
+      const circle = document.querySelector('.circle-newsletter');
+      let revealed = false;
+
+      function isTouchDevice() {
+        return window.matchMedia('(hover: none)').matches;
+      }
+
+      circle.addEventListener('click', function(e) {
+        if (!isTouchDevice()) return; // desktop handles normally
+        if (!revealed) {
+          e.preventDefault();
+          circle.classList.add('tapped');
+          revealed = true;
+        }
+        // second tap: follow the link naturally
+      });
+
+      // reset if tapped elsewhere
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.circle-newsletter') && revealed) {
+          circle.classList.remove('tapped');
+          revealed = false;
+        }
+      });
+    })();
   </script>
 </body>
 </html>
