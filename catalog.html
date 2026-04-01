@@ -8,72 +8,14 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; overflow: hidden; }
-
-    /* ── COMING SOON OVERLAY ── */
-    #coming-soon {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: #000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      cursor: crosshair;
-    }
-
-    .orb-soon {
-      width: 280px;
-      height: 280px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-
-    .orb-soon img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      border-radius: 50%;
-    }
-
-    .soon-label {
-      font-family: Helvetica, Arial, sans-serif;
-      font-size: 20px;
-      color: #fff;
-      margin-bottom: 12px;
-    }
-
-    .soon-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      font-weight: 300;
-      font-style: italic;
-      color: #fff;
-      margin-bottom: 32px;
-    }
-
-    .soon-back {
-      font-family: Helvetica, Arial, sans-serif;
-      font-size: 18px;
-      letter-spacing: -0.02em;
-      color: #fff;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
+    #coming-soon { position: fixed; inset: 0; z-index: 9999; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: crosshair; }
+    .orb-soon { width: 280px; height: 280px; border-radius: 50%; overflow: hidden; margin-bottom: 20px; }
+    .orb-soon img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%; }
+    .soon-label { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; font-weight: 300; color: #fff; margin-bottom: 32px; text-align: center; max-width: 440px; line-height: 1.5; }
+    .soon-back { font-family: Helvetica, Arial, sans-serif; font-size: 18px; letter-spacing: -0.02em; color: #fff; text-decoration: none; transition: color 0.2s; margin-top: 80px; }
     .soon-back:hover { color: rgba(255,255,255,0.7); }
-
-    /* ── HIDDEN CATALOG (preserved for later) ── */
     #catalog-app { display: none; }
-
-    body {
-      background: #f5f2eb;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-    }
-
+    body { background: #f5f2eb; font-family: 'Cormorant Garamond', serif; font-weight: 300; }
     .sidebar { width: 180px; flex-shrink: 0; height: 100vh; overflow-y: auto; background: #f5f2eb; border-right: 1px solid rgba(0,0,0,0.08); padding: 32px 20px 40px; display: flex; flex-direction: column; gap: 0; }
     .sidebar::-webkit-scrollbar { width: 0; }
     .sidebar-title { font-family: 'Cormorant', serif; font-size: 1.5rem; font-weight: 300; line-height: 1.15; color: #1a1a1a; margin-bottom: 16px; }
@@ -116,7 +58,7 @@
     .tooltip-name { font-family: 'Cormorant', serif; font-size: 1rem; font-weight: 300; color: #0a0a0a; margin-bottom: 4px; }
     .tooltip-cat { font-family: 'Fragment Mono', monospace; font-size: 0.44rem; letter-spacing: 0.1em; text-transform: uppercase; color: #0000ff; margin-bottom: 8px; }
     .tooltip-desc { font-size: 0.78rem; line-height: 1.6; color: #555; font-weight: 300; }
-    .add-btn { position: absolute; bottom: 28px; right: 28px; width: 40px; height: 40px; border-radius: 50%; background: #0000ff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white; box-shadow: 0 2px 12px rgba(0,0,0,0.15); transition: transform 0.2s; z-index: 10; font-family: 'Fragment Mono', monospace; }
+    .add-btn { position: absolute; bottom: 28px; right: 28px; width: 40px; height: 40px; border-radius: 50%; background: #0000ff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white; box-shadow: 0 2px 12px rgba(0,0,0,0.15); transition: transform 0.2s; z-index: 10; }
     .add-btn:hover { transform: scale(1.1); }
     .modal-overlay { position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,0.06); backdrop-filter: blur(2px); display: none; align-items: center; justify-content: center; }
     .modal-overlay.show { display: flex; }
@@ -139,20 +81,18 @@
 </head>
 <body>
 
-  <!-- ── COMING SOON — remove this div when ready to launch ── -->
+  <!-- COMING SOON — remove when ready to launch -->
   <div id="coming-soon">
     <div class="orb-soon">
-      <img src="https://i.imgur.com/2sA8MAN.png" style="object-position:50% 50%;" alt="">
+      <img src="https://i.imgur.com/olbhr2B.jpeg" style="object-position:50% 40%;" alt="">
     </div>
-    <p class="soon-label">A growing archive of what I find under the lens.</p>
-    <p class="soon-title">check back soon</p>
-    <a class="soon-back" href="index.html" style="margin-top:80px;">← back to Loupe</a>
+    <p class="soon-label">A growing archive of what I find under the lens, check back soon.</p>
+    <a class="soon-back" href="newsletter.html">Loupe subscription</a>
   </div>
 
-  <!-- ── CATALOG APP — hidden until ready, remove display:none from #catalog-app to launch ── -->
+  <!-- CATALOG APP — hidden until ready, remove display:none to launch -->
   <div id="catalog-app" style="display:none;">
     <div style="display:flex;height:100vh;">
-
       <div class="sidebar">
         <div class="sidebar-title">Loupe.</div>
         <div class="sidebar-desc">Specimens mapped by physical properties observed under magnification.</div>
@@ -171,7 +111,6 @@
         <a class="sidebar-back" href="index.html">← loupe</a>
         <a class="sidebar-back" style="padding-top:8px;" href="https://becsdesigned.com">← becs designed</a>
       </div>
-
       <div class="canvas-wrap" id="canvas">
         <div class="axis-h"></div>
         <div class="axis-v"></div>
@@ -181,11 +120,9 @@
         <div class="axis-label right">opaque</div>
         <button class="add-btn" onclick="showModal()" title="Add specimen">+</button>
       </div>
-
       <div class="grid-view" id="grid-view">
         <div class="grid-items" id="grid-items"></div>
       </div>
-
     </div>
   </div>
 
@@ -198,249 +135,39 @@
   <div class="modal-overlay" id="modal">
     <div class="modal">
       <h3>Add specimen</h3>
-      <div class="modal-field">
-        <label class="modal-label">Name</label>
-        <input class="modal-input" id="m-name" type="text" placeholder="e.g. Onion skin cross-section"/>
-      </div>
-      <div class="modal-field">
-        <label class="modal-label">Family</label>
-        <select class="modal-select" id="m-cat">
-          <option value="botanical">Botanical</option>
-          <option value="mineral">Mineral</option>
-          <option value="textile">Textile</option>
-          <option value="fluid">Fluid</option>
-          <option value="synthetic">Synthetic</option>
-        </select>
-      </div>
-      <div class="modal-field">
-        <label class="modal-label">Notes</label>
-        <textarea class="modal-textarea" id="m-desc" placeholder="Observations..."></textarea>
-      </div>
+      <div class="modal-field"><label class="modal-label">Name</label><input class="modal-input" id="m-name" type="text" placeholder="e.g. Onion skin cross-section"/></div>
+      <div class="modal-field"><label class="modal-label">Family</label><select class="modal-select" id="m-cat"><option value="botanical">Botanical</option><option value="mineral">Mineral</option><option value="textile">Textile</option><option value="fluid">Fluid</option><option value="synthetic">Synthetic</option></select></div>
+      <div class="modal-field"><label class="modal-label">Notes</label><textarea class="modal-textarea" id="m-desc" placeholder="Observations..."></textarea></div>
       <div class="modal-field">
         <div class="modal-range-row">
-          <div>
-            <div class="modal-range-label">Transparent <span id="v-tx">50</span>% → Opaque</div>
-            <input type="range" id="m-x" min="5" max="95" value="50" oninput="document.getElementById('v-tx').textContent=this.value"/>
-          </div>
-          <div>
-            <div class="modal-range-label">Living <span id="v-ty">50</span>% → Non-living</div>
-            <input type="range" id="m-y" min="5" max="95" value="50" oninput="document.getElementById('v-ty').textContent=this.value"/>
-          </div>
+          <div><div class="modal-range-label">Transparent <span id="v-tx">50</span>% → Opaque</div><input type="range" id="m-x" min="5" max="95" value="50" oninput="document.getElementById('v-tx').textContent=this.value"/></div>
+          <div><div class="modal-range-label">Living <span id="v-ty">50</span>% → Non-living</div><input type="range" id="m-y" min="5" max="95" value="50" oninput="document.getElementById('v-ty').textContent=this.value"/></div>
         </div>
       </div>
-      <div class="modal-actions">
-        <button class="btn-cancel" onclick="hideModal()">Cancel</button>
-        <button class="btn-add" onclick="addSpecimen()">Add to canvas</button>
-      </div>
+      <div class="modal-actions"><button class="btn-cancel" onclick="hideModal()">Cancel</button><button class="btn-add" onclick="addSpecimen()">Add to canvas</button></div>
     </div>
   </div>
 
   <script>
-    const catGradients = {
-      botanical: ['#4a7c59', '#a8d5a2', '#f5c842'],
-      mineral:   ['#8c7a5e', '#c4b49a', '#e8d5b0'],
-      textile:   ['#c4726a', '#e8a89a', '#f5d4a0'],
-      fluid:     ['#5b8fa8', '#9ac4d8', '#c8e8f0'],
-      synthetic: ['#9b7db6', '#c4a8d8', '#e8c4f0'],
-    };
-
-    function blobGradient(sp) {
-      const g = catGradients[sp.cat] || ['#888', '#ccc', '#eee'];
-      return `radial-gradient(circle at ${30 + (sp.id * 17) % 40}% ${20 + (sp.id * 23) % 50}%, ${g[0]}, ${g[1]} 50%, ${g[2]})`;
-    }
-
-    let currentView = 'axis';
-
-    function setView(view) {
-      currentView = view;
-      const canvas   = document.getElementById('canvas');
-      const gridView = document.getElementById('grid-view');
-      const btnAxis  = document.getElementById('btn-axis');
-      const btnGrid  = document.getElementById('btn-grid');
-      if (view === 'axis') {
-        canvas.style.display = '';
-        gridView.classList.remove('visible');
-        btnAxis.classList.add('active');
-        btnGrid.classList.remove('active');
-        renderSpecimens();
-      } else {
-        canvas.style.display = 'none';
-        gridView.classList.add('visible');
-        btnAxis.classList.remove('active');
-        btnGrid.classList.add('active');
-        renderGrid();
-      }
-    }
-
-    function renderGrid() {
-      const container = document.getElementById('grid-items');
-      container.innerHTML = '';
-      const visible = activeFilter === 'all' ? specimens : specimens.filter(s => s.cat === activeFilter);
-      visible.forEach(sp => {
-        const item = document.createElement('div');
-        item.className = 'grid-item';
-        item.addEventListener('click', e => showTooltip(e, sp));
-        const blob = document.createElement('div');
-        blob.className = 'grid-blob';
-        blob.style.background = blobGradient(sp);
-        const name = document.createElement('div');
-        name.className = 'grid-item-name';
-        name.textContent = sp.name;
-        item.appendChild(blob);
-        item.appendChild(name);
-        container.appendChild(item);
-      });
-    }
-
-    const catColors = {
-      botanical: '#4a7c59',
-      mineral:   '#8c7a5e',
-      textile:   '#c4726a',
-      fluid:     '#5b8fa8',
-      synthetic: '#9b7db6',
-    };
-
-    let specimens = [
-      { id:1,  name: 'Moss cell wall',     cat: 'botanical', x: 18, y: 12, desc: 'Thin-walled cells with visible chloroplasts. Near-transparent under white light.' },
-      { id:2,  name: 'Quartz grain',        cat: 'mineral',   x: 22, y: 88, desc: 'Crystalline silica. Highly transparent with conchoidal fracture surfaces.' },
-      { id:3,  name: 'Onion epidermis',     cat: 'botanical', x: 30, y: 20, desc: 'Single layer of elongated cells, lightly stained. Classic first specimen.' },
-      { id:4,  name: 'Wool fibre',          cat: 'textile',   x: 55, y: 72, desc: 'Scaly cuticle surface visible. Semi-opaque, warm amber under transmitted light.' },
-      { id:5,  name: 'Blood smear',         cat: 'fluid',     x: 42, y: 8,  desc: 'Erythrocytes and leukocytes on glass slide. Stained with Giemsa.' },
-      { id:6,  name: 'Granite slice',       cat: 'mineral',   x: 78, y: 92, desc: 'Interlocking feldspar, quartz, and mica crystals. Opaque in reflected light.' },
-      { id:7,  name: 'Spider silk',         cat: 'textile',   x: 25, y: 55, desc: 'Single dragline thread. Optically clear, surprisingly uniform diameter.' },
-      { id:8,  name: 'Diatom frustule',     cat: 'fluid',     x: 35, y: 48, desc: 'Silica shell of a single-celled alga. Intricate radial symmetry.' },
-      { id:9,  name: 'Acrylic shard',       cat: 'synthetic', x: 20, y: 82, desc: 'Cast polymer fragment. Very high optical clarity, no birefringence.' },
-      { id:10, name: 'Cork cross-section',  cat: 'botanical', x: 60, y: 30, desc: 'Dead cells at observation time but botanically classified as plant tissue.' },
-      { id:11, name: 'Charcoal particle',   cat: 'synthetic', x: 88, y: 78, desc: 'Amorphous carbon. Fully opaque, absorbs all incident light.' },
-      { id:12, name: 'Pollen grain',        cat: 'botanical', x: 48, y: 15, desc: 'Sporopollenin wall with species-specific surface texture. Birefringent under polarised light.' },
-      { id:13, name: 'Sea salt crystal',    cat: 'mineral',   x: 32, y: 96, desc: 'Cubic NaCl lattice. Transparent with sharp edges, strong birefringence.' },
-      { id:14, name: 'Polyester thread',    cat: 'textile',   x: 38, y: 68, desc: 'Uniform synthetic filament. Slight translucency, smooth surface.' },
-      { id:15, name: 'Cheek cell',          cat: 'fluid',     x: 50, y: 5,  desc: 'Human epithelial cell. Flat, irregular outline, nucleus visible after methylene blue stain.' },
-    ];
-
-    let nextId = 16;
-    let activeFilter = 'all';
-
-    function blobPath(seed) {
-      const cx = 20, cy = 20;
-      const pts = 7 + (seed % 4);
-      const path = [];
-      for (let i = 0; i < pts; i++) {
-        const angle = (i / pts) * Math.PI * 2;
-        const r  = 8 + ((seed * (i + 3) * 7919) % 7);
-        const jx = ((seed * (i + 1) * 6271) % 5) - 2.5;
-        const jy = ((seed * (i + 2) * 4973) % 5) - 2.5;
-        const x  = cx + Math.cos(angle) * r + jx;
-        const y  = cy + Math.sin(angle) * r + jy;
-        path.push(`${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`);
-      }
-      path.push('Z');
-      return path.join(' ');
-    }
-
-    function renderSpecimens() {
-      const canvas = document.getElementById('canvas');
-      canvas.querySelectorAll('.specimen').forEach(el => el.remove());
-      const cw = canvas.offsetWidth;
-      const ch = canvas.offsetHeight;
-      const pad = 80;
-      specimens.forEach(sp => {
-        const el = document.createElement('div');
-        el.className = 'specimen';
-        el.dataset.id  = sp.id;
-        el.dataset.cat = sp.cat;
-        if (activeFilter !== 'all' && sp.cat !== activeFilter) el.classList.add('hidden');
-        const px = pad + (sp.x / 100) * (cw - pad * 2);
-        const py = pad + (sp.y / 100) * (ch - pad * 2);
-        el.style.left = px + 'px';
-        el.style.top  = py + 'px';
-        const size = 28 + (sp.id % 4) * 6;
-        const rot  = ((sp.id * 37) % 22) - 11;
-        el.style.transform = `rotate(${rot}deg)`;
-        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('viewBox', '0 0 40 40');
-        svg.setAttribute('width', size);
-        svg.setAttribute('height', size);
-        svg.style.display = 'block';
-        svg.style.filter  = 'drop-shadow(1px 2px 4px rgba(0,0,0,0.15))';
-        const pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        pathEl.setAttribute('d', blobPath(sp.id * 31 + 7));
-        pathEl.setAttribute('fill', catColors[sp.cat]);
-        pathEl.setAttribute('fill-opacity', '0.82');
-        svg.appendChild(pathEl);
-        const label = document.createElement('div');
-        label.className   = 'specimen-label';
-        label.textContent = sp.name;
-        el.appendChild(svg);
-        el.appendChild(label);
-        el.addEventListener('click', e => showTooltip(e, sp));
-        canvas.appendChild(el);
-      });
-    }
-
-    const tooltip = document.getElementById('tooltip');
-
-    function showTooltip(e, sp) {
-      document.getElementById('tt-name').textContent = sp.name;
-      document.getElementById('tt-cat').textContent  = sp.cat;
-      document.getElementById('tt-desc').textContent = sp.desc;
-      tooltip.classList.add('show');
-      const tw = 240, th = 120;
-      let x = e.clientX + 16, y = e.clientY + 16;
-      if (x + tw > window.innerWidth)  x = e.clientX - tw - 16;
-      if (y + th > window.innerHeight) y = e.clientY - th - 16;
-      tooltip.style.left = x + 'px';
-      tooltip.style.top  = y + 'px';
-    }
-
-    document.addEventListener('click', e => {
-      if (!e.target.closest('.specimen') && !e.target.closest('.tooltip')) tooltip.classList.remove('show');
-    });
-
-    function filterCat(el) {
-      document.querySelectorAll('.sidebar-category').forEach(c => c.classList.remove('active'));
-      el.classList.add('active');
-      activeFilter = el.dataset.cat;
-      if (currentView === 'axis') {
-        document.querySelectorAll('.specimen').forEach(sp => {
-          if (activeFilter === 'all' || sp.dataset.cat === activeFilter) sp.classList.remove('hidden');
-          else sp.classList.add('hidden');
-        });
-      } else {
-        renderGrid();
-      }
-    }
-
-    function showModal() { document.getElementById('modal').classList.add('show'); }
-    function hideModal() { document.getElementById('modal').classList.remove('show'); }
-
-    function addSpecimen() {
-      const name = document.getElementById('m-name').value.trim();
-      if (!name) return;
-      specimens.push({
-        id:   nextId++,
-        name: name,
-        cat:  document.getElementById('m-cat').value,
-        x:    parseInt(document.getElementById('m-x').value),
-        y:    parseInt(document.getElementById('m-y').value),
-        desc: document.getElementById('m-desc').value.trim() || 'No notes.',
-      });
-      renderSpecimens();
-      hideModal();
-      document.getElementById('m-name').value = '';
-      document.getElementById('m-desc').value = '';
-      document.getElementById('m-x').value = 50;
-      document.getElementById('m-y').value = 50;
-      document.getElementById('v-tx').textContent = '50';
-      document.getElementById('v-ty').textContent = '50';
-    }
-
-    document.getElementById('modal').addEventListener('click', function(e) {
-      if (e.target === this) hideModal();
-    });
-
-    window.addEventListener('resize', renderSpecimens);
-    // renderSpecimens(); — only call when catalog app is visible
+    const catGradients = { botanical:['#4a7c59','#a8d5a2','#f5c842'], mineral:['#8c7a5e','#c4b49a','#e8d5b0'], textile:['#c4726a','#e8a89a','#f5d4a0'], fluid:['#5b8fa8','#9ac4d8','#c8e8f0'], synthetic:['#9b7db6','#c4a8d8','#e8c4f0'] };
+    function blobGradient(sp) { const g=catGradients[sp.cat]||['#888','#ccc','#eee']; return `radial-gradient(circle at ${30+(sp.id*17)%40}% ${20+(sp.id*23)%50}%, ${g[0]}, ${g[1]} 50%, ${g[2]})`; }
+    let currentView='axis';
+    function setView(view){currentView=view;const canvas=document.getElementById('canvas'),gridView=document.getElementById('grid-view'),btnAxis=document.getElementById('btn-axis'),btnGrid=document.getElementById('btn-grid');if(view==='axis'){canvas.style.display='';gridView.classList.remove('visible');btnAxis.classList.add('active');btnGrid.classList.remove('active');renderSpecimens();}else{canvas.style.display='none';gridView.classList.add('visible');btnAxis.classList.remove('active');btnGrid.classList.add('active');renderGrid();}}
+    function renderGrid(){const container=document.getElementById('grid-items');container.innerHTML='';const visible=activeFilter==='all'?specimens:specimens.filter(s=>s.cat===activeFilter);visible.forEach(sp=>{const item=document.createElement('div');item.className='grid-item';item.addEventListener('click',e=>showTooltip(e,sp));const blob=document.createElement('div');blob.className='grid-blob';blob.style.background=blobGradient(sp);const name=document.createElement('div');name.className='grid-item-name';name.textContent=sp.name;item.appendChild(blob);item.appendChild(name);container.appendChild(item);});}
+    const catColors={botanical:'#4a7c59',mineral:'#8c7a5e',textile:'#c4726a',fluid:'#5b8fa8',synthetic:'#9b7db6'};
+    let specimens=[{id:1,name:'Moss cell wall',cat:'botanical',x:18,y:12,desc:'Thin-walled cells with visible chloroplasts.'},{id:2,name:'Quartz grain',cat:'mineral',x:22,y:88,desc:'Crystalline silica.'},{id:3,name:'Onion epidermis',cat:'botanical',x:30,y:20,desc:'Single layer of elongated cells.'},{id:4,name:'Wool fibre',cat:'textile',x:55,y:72,desc:'Scaly cuticle surface visible.'},{id:5,name:'Blood smear',cat:'fluid',x:42,y:8,desc:'Erythrocytes and leukocytes on glass slide.'},{id:6,name:'Granite slice',cat:'mineral',x:78,y:92,desc:'Interlocking feldspar, quartz, and mica crystals.'},{id:7,name:'Spider silk',cat:'textile',x:25,y:55,desc:'Single dragline thread.'},{id:8,name:'Diatom frustule',cat:'fluid',x:35,y:48,desc:'Silica shell of a single-celled alga.'},{id:9,name:'Acrylic shard',cat:'synthetic',x:20,y:82,desc:'Cast polymer fragment.'},{id:10,name:'Cork cross-section',cat:'botanical',x:60,y:30,desc:'Dead cells at observation time.'},{id:11,name:'Charcoal particle',cat:'synthetic',x:88,y:78,desc:'Amorphous carbon.'},{id:12,name:'Pollen grain',cat:'botanical',x:48,y:15,desc:'Sporopollenin wall with species-specific surface texture.'},{id:13,name:'Sea salt crystal',cat:'mineral',x:32,y:96,desc:'Cubic NaCl lattice.'},{id:14,name:'Polyester thread',cat:'textile',x:38,y:68,desc:'Uniform synthetic filament.'},{id:15,name:'Cheek cell',cat:'fluid',x:50,y:5,desc:'Human epithelial cell.'}];
+    let nextId=16,activeFilter='all';
+    function blobPath(seed){const cx=20,cy=20,pts=7+(seed%4),path=[];for(let i=0;i<pts;i++){const angle=(i/pts)*Math.PI*2,r=8+((seed*(i+3)*7919)%7),jx=((seed*(i+1)*6271)%5)-2.5,jy=((seed*(i+2)*4973)%5)-2.5,x=cx+Math.cos(angle)*r+jx,y=cy+Math.sin(angle)*r+jy;path.push(`${i===0?'M':'L'}${x.toFixed(1)},${y.toFixed(1)}`);}path.push('Z');return path.join(' ');}
+    function renderSpecimens(){const canvas=document.getElementById('canvas');canvas.querySelectorAll('.specimen').forEach(el=>el.remove());const cw=canvas.offsetWidth,ch=canvas.offsetHeight,pad=80;specimens.forEach(sp=>{const el=document.createElement('div');el.className='specimen';el.dataset.id=sp.id;el.dataset.cat=sp.cat;if(activeFilter!=='all'&&sp.cat!==activeFilter)el.classList.add('hidden');const px=pad+(sp.x/100)*(cw-pad*2),py=pad+(sp.y/100)*(ch-pad*2);el.style.left=px+'px';el.style.top=py+'px';const size=28+(sp.id%4)*6,rot=((sp.id*37)%22)-11;el.style.transform=`rotate(${rot}deg)`;const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 40 40');svg.setAttribute('width',size);svg.setAttribute('height',size);svg.style.display='block';svg.style.filter='drop-shadow(1px 2px 4px rgba(0,0,0,0.15))';const pathEl=document.createElementNS('http://www.w3.org/2000/svg','path');pathEl.setAttribute('d',blobPath(sp.id*31+7));pathEl.setAttribute('fill',catColors[sp.cat]);pathEl.setAttribute('fill-opacity','0.82');svg.appendChild(pathEl);const label=document.createElement('div');label.className='specimen-label';label.textContent=sp.name;el.appendChild(svg);el.appendChild(label);el.addEventListener('click',e=>showTooltip(e,sp));canvas.appendChild(el);});}
+    const tooltip=document.getElementById('tooltip');
+    function showTooltip(e,sp){document.getElementById('tt-name').textContent=sp.name;document.getElementById('tt-cat').textContent=sp.cat;document.getElementById('tt-desc').textContent=sp.desc;tooltip.classList.add('show');const tw=240,th=120;let x=e.clientX+16,y=e.clientY+16;if(x+tw>window.innerWidth)x=e.clientX-tw-16;if(y+th>window.innerHeight)y=e.clientY-th-16;tooltip.style.left=x+'px';tooltip.style.top=y+'px';}
+    document.addEventListener('click',e=>{if(!e.target.closest('.specimen')&&!e.target.closest('.tooltip'))tooltip.classList.remove('show');});
+    function filterCat(el){document.querySelectorAll('.sidebar-category').forEach(c=>c.classList.remove('active'));el.classList.add('active');activeFilter=el.dataset.cat;if(currentView==='axis'){document.querySelectorAll('.specimen').forEach(sp=>{if(activeFilter==='all'||sp.dataset.cat===activeFilter)sp.classList.remove('hidden');else sp.classList.add('hidden');});}else{renderGrid();}}
+    function showModal(){document.getElementById('modal').classList.add('show');}
+    function hideModal(){document.getElementById('modal').classList.remove('show');}
+    function addSpecimen(){const name=document.getElementById('m-name').value.trim();if(!name)return;specimens.push({id:nextId++,name,cat:document.getElementById('m-cat').value,x:parseInt(document.getElementById('m-x').value),y:parseInt(document.getElementById('m-y').value),desc:document.getElementById('m-desc').value.trim()||'No notes.'});renderSpecimens();hideModal();document.getElementById('m-name').value='';document.getElementById('m-desc').value='';document.getElementById('m-x').value=50;document.getElementById('m-y').value=50;document.getElementById('v-tx').textContent='50';document.getElementById('v-ty').textContent='50';}
+    document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)hideModal();});
+    window.addEventListener('resize',renderSpecimens);
   </script>
 </body>
 </html>
