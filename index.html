@@ -48,7 +48,7 @@
 
     .entry-nav a, .entry-nav span {
       font-family: 'Fragment Mono', monospace;
-      font-size: 0.54rem;
+      font-size: 0.75rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.4);
@@ -522,12 +522,45 @@
 
     .btn-add:hover { background: #0000cc; }
   </style>
+
+  <style>
+    /* ── COLOR PALETTE ── */
+    .palette {
+      position: fixed;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 500;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .palette-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1.5px solid rgba(255,255,255,0.3);
+    }
+
+    .palette-dot:hover { transform: scale(1.3); }
+    .palette-dot.active { box-shadow: 0 0 0 2px rgba(255,255,255,0.8); transform: scale(1.15); }
+  </style>
 </head>
 <body>
 
+  <!-- COLOR PALETTE -->
+  <div class="palette">
+    <div class="palette-dot active" style="background:#0000ff;" data-bg="#0000ff" data-circle="#ffffff" data-hover="#0000ff" data-circle-border="#ffffff" title="Blue"></div>
+    <div class="palette-dot" style="background:#111111;" data-bg="#111111" data-circle="#ffffff" data-hover="#111111" data-circle-border="#ffffff" title="Black"></div>
+    <div class="palette-dot" style="background:#c8f000;" data-bg="#7ec8e3" data-circle="#c8f000" data-hover="#7ec8e3" data-circle-border="#c8f000" title="Chartreuse + Baby Blue"></div>
+    <div class="palette-dot" style="background:#6d0026;" data-bg="#6d0026" data-circle="#ffb3c6" data-hover="#6d0026" data-circle-border="#ffb3c6" title="Burgundy + Pink"></div>
+  </div>
+
   <div id="entry">
 
-    <a class="catalogue-btn" href="catalog.html">View catalogue →</a>
 
     <div class="orbit-system">
       <a class="circle-newsletter" href="newsletter.html">
@@ -538,10 +571,6 @@
       </a>
     </div>
 
-    <div class="entry-nav">
-      <span>loupe — becs designed</span>
-      <a href="https://becsdesigned.com">← becs designed</a>
-    </div>
 
   </div>
 
@@ -792,6 +821,34 @@
       if (document.getElementById('canvas-page').classList.contains('visible')) {
         renderSpecimens();
       }
+    });
+  </script>
+
+  <script>
+    document.querySelectorAll('.palette-dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        const bg          = dot.dataset.bg;
+        const circle      = dot.dataset.circle;
+        const hover       = dot.dataset.hover;
+        const circleBorder = dot.dataset.circleBorder;
+
+        // Update entry background
+        const entry = document.getElementById('entry');
+        entry.style.background = bg;
+        document.body.style.background = bg;
+
+        // Update circle color
+        document.querySelector('.circle-newsletter').style.background = circle;
+
+        // Update active dot
+        document.querySelectorAll('.palette-dot').forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+
+        // Update dot border color to contrast with bg
+        document.querySelectorAll('.palette-dot').forEach(d => {
+          d.style.borderColor = circle === '#ffffff' ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.3)';
+        });
+      });
     });
   </script>
 </body>
