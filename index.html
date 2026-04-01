@@ -580,6 +580,23 @@
       }
       .circle-label-main { font-size: 1.5rem; }
       .circle-label-sub { font-size: 0.55rem; color: rgba(255,255,255,0.9); }
+      .orbit-system {
+        top: 38%;
+      }
+      .tap-hint {
+        display: block !important;
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.3); }
+      50% { box-shadow: 0 0 0 16px rgba(255,255,255,0); }
+    }
+
+    @media (hover: none) {
+      .circle-newsletter {
+        animation: pulse 2.5s ease-in-out infinite;
+      }
     }
   </style>
 </head>
@@ -605,6 +622,7 @@
       </a>
     </div>
 
+    <p class="tap-hint" style="display:none;position:fixed;left:50%;bottom:calc(40px + 40px);transform:translateX(-50%);font-family:'Fragment Mono',monospace;font-size:0.5rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.5);white-space:nowrap;">tap to subscribe</p>
 
   </div>
 
