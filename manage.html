@@ -22,7 +22,7 @@
     .gallery {
       position: relative;
       width: 100%;
-      height: 520px;
+      height: 420px;
       background: #000;
       pointer-events: none;
     }
@@ -117,39 +117,40 @@
     .btn-row {
       display: flex;
       justify-content: center;
-      gap: 14px;
+      gap: 32px;
       margin-top: 8px;
     }
 
     .action-btn {
-      flex: 1;
-      max-width: 200px;
-      padding: 14px 20px;
+      padding: 0 0 4px;
       background: none;
+      border: none;
       cursor: pointer;
       font-family: Helvetica, Arial, sans-serif;
-      font-size: 13px;
-      letter-spacing: 0.16em;
+      font-size: 14px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       text-decoration: none;
-      text-align: center;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 8px;
-      border: 1px solid rgba(255,255,255,0.4);
-      color: #ffffff;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      transition: opacity 0.2s;
     }
 
-    .action-btn:hover {
-      background: #ffffff;
-      color: #000;
-      border-color: #ffffff;
+    .action-btn.secondary {
+      color: rgba(255,255,255,0.6);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
     }
+
+    .action-btn.primary {
+      color: #ffffff;
+      border-bottom: 1px solid #ffffff;
+    }
+
+    .action-btn:hover { opacity: 0.6; }
 
     #cancel-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-    #cancel-btn:disabled:hover { background: none; color: #ffffff; border-color: rgba(255,255,255,0.4); }
+    #cancel-btn:disabled:hover { opacity: 0.3; }
 
     .btn-label {
       font-size: 11px;
@@ -245,8 +246,8 @@
         </p>
 
         <div class="btn-row">
-          <a href="/newsletter" class="action-btn">← Back to Loupe</a>
-          <button type="submit" id="cancel-btn" class="action-btn">
+          <a href="/newsletter" class="action-btn secondary">Back to Loupe</a>
+          <button type="submit" id="cancel-btn" class="action-btn primary">
             <span class="btn-label">Cancel Subscription</span>
             <div class="spinner"></div>
           </button>
