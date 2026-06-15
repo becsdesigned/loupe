@@ -19,6 +19,8 @@
       min-height: 100vh;
     }
 
+    body { position: relative; }
+
     .gallery {
       position: relative;
       width: 100%;
@@ -122,13 +124,16 @@
     }
 
     .loupe-orb {
+      position: absolute;
+      left: 4vw;
+      bottom: 80px;
       display: block;
       width: 220px;
       height: 220px;
-      margin-left: -40px;
       border-radius: 50%;
       overflow: hidden;
       transition: opacity 0.2s, transform 0.2s;
+      z-index: 5;
     }
     .loupe-orb img {
       width: 100%;
@@ -280,17 +285,15 @@
         <p class="note">
           Your subscription will remain active until the end of your current billing period. You won't be charged again.
         </p>
-
-        <div class="btn-row">
-          <a href="/newsletter" class="loupe-orb" aria-label="Back to Loupe">
-            <img src="https://i.imgur.com/3t3UDVs.png" alt="Loupe" />
-          </a>
-        </div>
       </div>
     </form>
 
   </div>
 </div>
+
+<a href="/newsletter" class="loupe-orb" aria-label="Back to Loupe">
+  <img src="https://i.imgur.com/3t3UDVs.png" alt="Loupe" />
+</a>
 
 <footer></footer>
 
