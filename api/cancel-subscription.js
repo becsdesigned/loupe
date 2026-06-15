@@ -221,7 +221,7 @@
 
     <div class="eyebrow">Manage Subscription</div>
 
-    <p class="heading">Thank you for spending time under the microscope with me. Enter your email to cancel your subscription.</p>
+    <p class="heading">Thank you for spending time under the microscope with me ⋆˚꩜｡ <br><br>Enter your email to cancel your subscription.</p>
 
     <div id="message"></div>
 
