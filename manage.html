@@ -121,32 +121,23 @@
     }
 
     #cancel-btn {
-      width: 140px; height: 140px;
-      border-radius: 50%;
-      padding: 0; background: none; border: none;
-      cursor: pointer; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-      transition: opacity 0.2s, transform 0.1s;
-      position: relative;
-    }
-    #cancel-btn:hover   { opacity: 0.86; }
-    #cancel-btn:active  { transform: scale(0.99); }
-    #cancel-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-
-    /* Inner circle styled to match Loupe palette */
-    .btn-inner {
-      width: 100%; height: 100%;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      display: flex;
-      flex-direction: column;
+      padding: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,1);
+      text-decoration: none;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 4px;
-      transition: background 0.2s;
+      gap: 8px;
+      transition: opacity 0.2s;
     }
-    #cancel-btn:hover .btn-inner { background: rgba(255,255,255,0.1); }
+    #cancel-btn:hover    { opacity: 0.65; }
+    #cancel-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
     .btn-label {
       font-size: 11px;
@@ -226,11 +217,11 @@
 <div class="content-wrap">
   <div class="panel">
 
-    <a href="/" class="back-link">← Back to Loupe</a>
+    <a href="/newsletter" class="back-link">← Back to Loupe</a>
 
     <div class="eyebrow">Manage Subscription</div>
 
-    <p class="heading">We're sorry to see you go. Enter your email to cancel your subscription.</p>
+    <p class="heading">Thank you for spending time under the microscope with me ⋆˚꩜｡ <br><br>Enter your email to cancel your subscription.</p>
 
     <div id="message"></div>
 
@@ -241,18 +232,16 @@
           <input type="email" id="email" placeholder="you@example.com" required />
         </div>
 
+        <p class="note">
+          Your subscription will remain active until the end of your current billing period. You won't be charged again.
+        </p>
+
         <div class="btn-row">
           <button type="submit" id="cancel-btn">
-            <div class="btn-inner">
-              <span class="btn-label">Cancel<br>Subscription</span>
-              <div class="spinner"></div>
-            </div>
+            <span class="btn-label">Cancel Subscription</span>
+            <div class="spinner"></div>
           </button>
         </div>
-
-        <p class="note">
-          Your subscription will remain active until the end of your current billing period.<br>You won't be charged again.
-        </p>
       </div>
     </form>
 
