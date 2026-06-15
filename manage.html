@@ -121,6 +121,18 @@
       margin-top: 8px;
     }
 
+    .email-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .email-row .action-btn {
+      flex: 0 0 auto;
+      max-width: none;
+      padding: 11px 24px;
+    }
+
     .action-btn {
       flex: 1;
       max-width: 200px;
@@ -236,9 +248,15 @@
 
     <form id="cancel-form">
       <div class="form-fields">
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" placeholder="you@example.com" required />
+        <div class="email-row">
+          <div class="form-group" style="flex:1;">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="you@example.com" required />
+          </div>
+          <button type="submit" id="cancel-btn" class="action-btn">
+            <span class="btn-label">Cancel</span>
+            <div class="spinner"></div>
+          </button>
         </div>
 
         <p class="note">
@@ -247,10 +265,6 @@
 
         <div class="btn-row">
           <a href="/newsletter" class="action-btn">Back to Loupe</a>
-          <button type="submit" id="cancel-btn" class="action-btn">
-            <span class="btn-label">Cancel Subscription</span>
-            <div class="spinner"></div>
-          </button>
         </div>
       </div>
     </form>
@@ -258,7 +272,7 @@
   </div>
 </div>
 
-<footer>Vol. 01 — Specimen &nbsp;·&nbsp; Loupe &nbsp;·&nbsp; 123 Design Street, New York, NY 10001</footer>
+<footer></footer>
 
 <script>
   const form   = document.getElementById('cancel-form');
