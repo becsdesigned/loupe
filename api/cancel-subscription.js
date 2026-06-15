@@ -1,54 +1,307 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loupe — Manage Subscription</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Fragment+Mono:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-module.exports = async (req, res) => {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
-  const { email } = req.body;
-
-  if (!email) {
-    return res.status(400).json({ error: 'Missing required fields.' });
-  }
-
-  try {
-    // Find customer by email
-    const existingCustomers = await stripe.customers.list({ email, limit: 1 });
-
-    if (existingCustomers.data.length === 0) {
-      return res.status(404).json({ error: 'No account found with that email address.' });
+    html, body {
+      background: #000;
+      color: rgba(255,255,255,0.75);
+      font-family: Helvetica, Arial, sans-serif;
+      cursor: crosshair;
+      overflow-x: hidden;
+      min-height: 100vh;
     }
 
-    const customer = existingCustomers.data[0];
-
-    // Find active subscription
-    const subscriptions = await stripe.subscriptions.list({
-      customer: customer.id,
-      status: 'active',
-      limit: 1,
-    });
-
-    if (subscriptions.data.length === 0) {
-      return res.status(404).json({ error: 'No active subscription found for that email address.' });
+    .gallery {
+      position: relative;
+      width: 100%;
+      height: 520px;
+      background: #000;
+      pointer-events: none;
     }
 
-    const subscription = subscriptions.data[0];
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .orb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 50%;
+    }
 
-    // Cancel at end of billing period (more user-friendly)
-    await stripe.subscriptions.update(subscription.id, {
-      cancel_at_period_end: true,
-    });
+    .content-wrap {
+      background: #000;
+      padding: 0 5vw 100px;
+      display: flex;
+      justify-content: center;
+    }
 
-    const endDate = new Date(subscription.current_period_end * 1000).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
+    .panel {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
 
-    return res.status(200).json({ success: true, endDate });
+    .eyebrow {
+      font-size: 14px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .eyebrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.2);
+    }
 
-  } catch (err) {
-    console.error('Stripe error:', err.message);
-    return res.status(500).json({ error: err.message });
+    .heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 28px;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .form-fields { display: flex; flex-direction: column; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+    label {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 11px 13px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      color: rgba(255,255,255,0.75);
+      outline: none;
+      border-radius: 0;
+      transition: border-color 0.2s;
+    }
+    input:focus { border-color: rgba(255,255,255,0.45); }
+    input::placeholder { color: rgba(255,255,255,0.15); }
+
+    #message {
+      font-size: 15px;
+      padding: 11px 13px;
+      display: none;
+      line-height: 1.6;
+    }
+    #message.error   { display: block; border: 1px solid rgba(220,80,70,0.3);   color: #e06058; }
+    #message.success { display: block; border: 1px solid rgba(76,175,137,0.3);  color: #4caf89; }
+
+    .btn-row {
+      display: flex;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    #cancel-btn {
+      padding: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,1);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.2s;
+    }
+    #cancel-btn:hover    { opacity: 0.65; }
+    #cancel-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    .btn-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .spinner {
+      width: 11px; height: 11px;
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-top-color: rgba(255,255,255,0.75);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #cancel-btn.loading .spinner    { display: block; }
+    #cancel-btn.loading .btn-label  { display: none; }
+
+    .note {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .back-link {
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: rgba(255,255,255,0.75); }
+
+    footer {
+      text-align: center;
+      padding: 60px 24px 48px;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.18);
+      text-transform: uppercase;
+      background: #000;
+    }
+
+    @media (max-width: 768px) {
+      .gallery { height: 340px; }
+      .orb-1 { width: 160px !important; height: 160px !important; top: 30px !important; left: 5vw !important; }
+      .orb-2 { width: 160px !important; height: 160px !important; top: 140px !important; right: -20px !important; }
+      .orb-3 { width: 140px !important; height: 140px !important; top: 60px !important; left: 42% !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Decorative orb gallery (mirrors index.html aesthetic) -->
+<div class="gallery">
+  <div class="orb orb-1" style="width:220px;height:220px;top:50px;left:6vw;">
+    <img src="https://i.imgur.com/W5H7jRu.png" style="object-position:30% 50%;" alt="">
+  </div>
+  <div class="orb orb-2" style="width:200px;height:200px;top:180px;right:8vw;">
+    <img src="https://i.imgur.com/olbhr2B.jpeg" style="object-position:40% 60%;" alt="">
+  </div>
+  <div class="orb orb-3" style="width:180px;height:180px;top:60px;left:38%;">
+    <img src="https://i.imgur.com/p1YDCB2.jpeg" style="object-position:50% 50%;" alt="">
+  </div>
+</div>
+
+<div class="content-wrap">
+  <div class="panel">
+
+    <a href="/newsletter" class="back-link">← Back to Loupe</a>
+
+    <div class="eyebrow">Manage Subscription</div>
+
+    <p class="heading">Thank you for spending time under the microscope with me. Enter your email to cancel your subscription.</p>
+
+    <div id="message"></div>
+
+    <form id="cancel-form">
+      <div class="form-fields">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="you@example.com" required />
+        </div>
+
+        <p class="note">
+          Your subscription will remain active until the end of your current billing period. You won't be charged again.
+        </p>
+
+        <div class="btn-row">
+          <button type="submit" id="cancel-btn">
+            <span class="btn-label">Cancel Subscription</span>
+            <div class="spinner"></div>
+          </button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<footer>Vol. 01 — Specimen &nbsp;·&nbsp; Loupe &nbsp;·&nbsp; 123 Design Street, New York, NY 10001</footer>
+
+<script>
+  const form   = document.getElementById('cancel-form');
+  const btn    = document.getElementById('cancel-btn');
+  const msgBox = document.getElementById('message');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    showMessage('', '');
+
+    const email = document.getElementById('email').value.trim();
+
+    if (!email) {
+      showMessage('Please enter your email address.', 'error');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const res  = await fetch('/api/cancel-subscription', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+
+      if (data.error) {
+        showMessage(data.error, 'error');
+      } else {
+        showMessage(
+          `Your subscription has been cancelled. You'll continue to receive Loupe until ${data.endDate}.`,
+          'success'
+        );
+        form.reset();
+        btn.disabled = true;
+      }
+    } catch (err) {
+      showMessage('Something went wrong. Please try again.', 'error');
+    }
+
+    setLoading(false);
+  });
+
+  function setLoading(v) {
+    btn.disabled = v;
+    btn.classList.toggle('loading', v);
   }
-};
+  function showMessage(text, type) {
+    msgBox.textContent = text;
+    msgBox.className   = type;
+  }
+</script>
+
+</body>
+</html>
