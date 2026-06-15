@@ -152,13 +152,37 @@
     }
 
     footer a {
-      color: rgba(255,255,255,0.18);
-      text-decoration: underline;
+      color: #ffffff;
+      text-decoration: none;
       text-underline-offset: 3px;
-      transition: color 0.2s;
+      font-size: 15px;
+      transition: opacity 0.2s;
     }
 
-    footer a:hover { color: rgba(255,255,255,0.5); }
+    footer a:hover { opacity: 0.7; }
+
+    /* Top manage-subscription bar */
+    .manage-bar {
+      position: relative;
+      z-index: 20;
+      display: flex;
+      justify-content: center;
+      padding: 24px 5vw 0;
+    }
+
+    .manage-btn {
+      display: inline-block;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-decoration: none;
+      text-underline-offset: 3px;
+      transition: opacity 0.2s;
+    }
+
+    .manage-btn:hover { opacity: 0.7; }
 
     @media (max-width: 768px) {
       .two-col { grid-template-columns: 1fr; gap: 48px; }
@@ -183,6 +207,10 @@
   </style>
 </head>
 <body>
+
+<div class="manage-bar">
+  <a href="/manage" class="manage-btn">Loupe — Manage Subscription</a>
+</div>
 
 <div class="gallery">
   <div class="orb orb-1" style="top:60px;left:8vw;"><img src="https://i.imgur.com/DEHkytp.jpeg" style="object-position:20% 35%;" alt=""></div>
