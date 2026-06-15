@@ -393,7 +393,7 @@
         const { error: ce } = await stripe.confirmCardPayment(data.clientSecret);
         if (ce) { showMessage(ce.message, 'error'); setLoading(false); return; }
       }
-      showMessage("You're in. Welcome to Loupe — check your inbox.", 'success');
+      showMessage("You're in. Welcome to Loupe ⋆˚꩜｡", 'success');
       form.reset();
       cardElement.clear();
     } catch(err) {
