@@ -121,6 +121,23 @@
       margin-top: 8px;
     }
 
+    .loupe-orb {
+      display: block;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      overflow: hidden;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .loupe-orb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+    }
+    .loupe-orb:hover { opacity: 0.85; transform: scale(1.03); }
+
     .email-row {
       display: flex;
       align-items: flex-end;
@@ -264,7 +281,9 @@
         </p>
 
         <div class="btn-row">
-          <a href="/newsletter" class="action-btn">Back to Loupe</a>
+          <a href="/newsletter" class="loupe-orb" aria-label="Back to Loupe">
+            <img src="https://i.imgur.com/3t3UDVs.png" alt="Loupe" />
+          </a>
         </div>
       </div>
     </form>
