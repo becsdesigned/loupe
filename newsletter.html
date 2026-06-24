@@ -116,15 +116,28 @@
     .stripe-field.focused { border-color: rgba(255,255,255,0.45); }
 
     #subscribe-btn {
-      width: 140px; height: 140px;
-      border-radius: 50%;
-      padding: 0; background: none; border: none;
-      cursor: pointer; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-      transition: opacity 0.2s, transform 0.1s;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 26px;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.9);
+      background: none;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      padding: 4px 0 8px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      width: auto;
+      height: auto;
+      border-radius: 0;
+      overflow: visible;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
     }
-    #subscribe-btn:hover { opacity: 0.86; }
-    #subscribe-btn:active { transform: scale(0.99); }
+    #subscribe-btn:hover { opacity: 0.6; }
+    #subscribe-btn:active { opacity: 0.4; }
     #subscribe-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
     .secure-note {
@@ -191,21 +204,20 @@
       .orb { width: 170px; height: 170px; }
       .gallery { height: 2200px; }
       .content-wrap { padding: 20px 5vw 60px; }
-      #subscribe-btn { width: 90px; height: 90px; }
     }
 
     @media (max-width: 768px) {
       .orb-1  { top: 40px !important;   left: 5vw !important; }
-      .orb-2  { top: 180px !important;  right: -40px !important; }
+      .orb-2  { top: 180px !important;  right: -10px !important; }
       .orb-3  { top: 440px !important;  left: 30% !important; }
-      .orb-4  { top: 680px !important;  left: -30px !important; }
+      .orb-4  { top: 680px !important;  left: -10px !important; }
       .orb-5  { top: 760px !important;  left: 50% !important; }
-      .orb-catalog { top: 940px !important; right: -30px !important; width: 170px !important; height: 170px !important; }
-      .orb-6  { top: 1100px !important; left: -60px !important; }
+      .orb-catalog { top: 940px !important; right: -10px !important; width: 170px !important; height: 170px !important; }
+      .orb-6  { top: 1100px !important; left: -10px !important; }
       .orb-7  { top: 1280px !important; left: 30% !important; }
       .orb-8  { top: 1460px !important; right: 9vw !important; }
       .orb-9  { top: 1660px !important; left: 10% !important; }
-      .orb-10 { top: 1860px !important; right: -30px !important; }
+      .orb-10 { top: 1860px !important; right: -10px !important; }
     }
   </style>
 </head>
@@ -319,9 +331,9 @@
             <label>Card Details</label>
             <div id="card-element" class="stripe-field"></div>
           </div>
-          <div style="display:flex;justify-content:center;margin-top:16px;">
+          <div style="display:flex;justify-content:flex-start;margin-top:20px;">
             <button type="submit" id="subscribe-btn">
-              <img src="https://i.imgur.com/27U9Khi.png" alt="Subscribe" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+              <span class="btn-label">subscribe</span>
               <div class="spinner"></div>
             </button>
           </div>
