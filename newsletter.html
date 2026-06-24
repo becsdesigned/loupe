@@ -22,14 +22,14 @@
     .gallery {
       position: relative;
       width: 100%;
-      height: 1900px;
+      height: 2150px;
       background: #000;
     }
 
     .orb {
       position: absolute;
-      width: 280px;
-      height: 280px;
+      width: 340px;
+      height: 340px;
       border-radius: 50%;
       overflow: hidden;
     }
@@ -37,8 +37,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: 50% 50%;
       display: block;
       border-radius: 50%;
+      transform: scale(1.6);
     }
 
     .content-wrap {
@@ -161,7 +163,6 @@
 
     footer a:hover { opacity: 0.7; }
 
-    /* Top manage-subscription bar */
     .manage-bar {
       position: relative;
       z-index: 20;
@@ -185,10 +186,9 @@
 
     @media (max-width: 768px) {
       .two-col { grid-template-columns: 1fr; gap: 48px; }
-      .orb-catalog { width: 200px !important; height: 200px !important; }
       .panel-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 48px; }
-      .orb { width: 200px; height: 200px; }
-      .gallery { height: 1780px; }
+      .orb { width: 240px; height: 240px; }
+      .gallery { height: 1900px; }
       .content-wrap { padding: 20px 5vw 60px; }
     }
 
@@ -198,7 +198,7 @@
       .orb-3 { top: 440px !important; left: 30% !important; }
       .orb-4 { top: 700px !important; left: -30px !important; }
       .orb-5 { top: 780px !important; left: 50% !important; }
-      .orb-catalog { top: 960px !important; right: -30px !important; width: 200px !important; height: 200px !important; }
+      .orb-catalog { top: 960px !important; right: -30px !important; width: 240px !important; height: 240px !important; }
       .orb-6 { top: 1120px !important; left: -60px !important; }
       .orb-7 { top: 1280px !important; left: 30% !important; }
       .orb-8 { top: 1560px !important; right: 9vw !important; }
@@ -212,24 +212,24 @@
 </div>
 
 <div class="gallery">
-  <div class="orb orb-1" style="top:60px;left:8vw;"><img src="https://i.imgur.com/ZcoZPdF.jpg" style="object-position:20% 35%;" alt=""></div>
-  <div class="orb orb-2" style="top:240px;right:11vw;"><img src="https://i.imgur.com/WuApVMY.jpg" style="object-position:50% 30%;" alt=""></div>
-  <div class="orb orb-3" style="top:500px;left:38%;"><img src="https://i.imgur.com/xZxqY2x.jpg" style="object-position:50% 50%;" alt=""></div>
-  <div class="orb orb-4" style="top:740px;left:4vw;"><img src="https://i.imgur.com/4QUYImz.jpg" style="object-position:40% 60%;" alt=""></div>
-  <a href="https://loupe.becsdesigned.com/catalog" class="orb-catalog" style="display:block;position:absolute;top:880px;right:5vw;border-radius:50%;overflow:hidden;width:280px;height:280px;">
-    <img src="https://i.imgur.com/kyGvEPh.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;object-position:50% 50%;" alt="">
+  <div class="orb orb-1" style="top:60px;left:8vw;"><img src="https://i.imgur.com/ZcoZPdF.jpg" alt=""></div>
+  <div class="orb orb-2" style="top:240px;right:11vw;"><img src="https://i.imgur.com/WuApVMY.jpg" alt=""></div>
+  <div class="orb orb-3" style="top:560px;left:38%;"><img src="https://i.imgur.com/xZxqY2x.jpg" alt=""></div>
+  <div class="orb orb-4" style="top:840px;left:4vw;"><img src="https://i.imgur.com/4QUYImz.jpg" alt=""></div>
+  <a href="https://loupe.becsdesigned.com/catalog" class="orb-catalog" style="display:block;position:absolute;top:980px;right:5vw;border-radius:50%;overflow:hidden;width:340px;height:340px;">
+    <img src="https://i.imgur.com/kyGvEPh.jpg" style="width:100%;height:100%;object-fit:cover;object-position:50% 50%;border-radius:50%;transform:scale(1.6);" alt="">
   </a>
-  <div class="orb orb-5" style="top:1120px;left:55%;"><img src="https://i.imgur.com/umtmjoX.jpg" style="object-position:60% 80%;" alt=""></div>
-  <div class="orb orb-6" style="top:1360px;left:7vw;"><img src="https://i.imgur.com/kBYBCJa.jpg" style="object-position:30% 50%;" alt=""></div>
-  <div class="orb orb-7" style="top:1520px;left:42%;"><img src="https://i.imgur.com/gZZTKhe.jpg" style="object-position:50% 40%;" alt=""></div>
-  <div class="orb orb-8" style="top:1760px;right:9vw;"><img src="https://i.imgur.com/pbQXLKN.jpg" style="object-position:60% 20%;" alt=""></div>
+  <div class="orb orb-5" style="top:1280px;left:55%;"><img src="https://i.imgur.com/umtmjoX.jpg" alt=""></div>
+  <div class="orb orb-6" style="top:1480px;left:7vw;"><img src="https://i.imgur.com/kBYBCJa.jpg" alt=""></div>
+  <div class="orb orb-7" style="top:1680px;left:42%;"><img src="https://i.imgur.com/gZZTKhe.jpg" alt=""></div>
+  <div class="orb orb-8" style="top:1780px;right:9vw;"><img src="https://i.imgur.com/pbQXLKN.jpg" alt=""></div>
 </div>
 
 <div class="content-wrap">
 
   <div style="max-width:1100px;margin:0 auto 48px;position:relative;display:inline-block;">
-    <div class="orb" style="position:relative;width:280px;height:280px;">
-      <img src="https://i.imgur.com/l6eGdiW.jpg" style="object-position:50% 50%;" alt="">
+    <div class="orb" style="position:relative;width:340px;height:340px;">
+      <img src="https://i.imgur.com/l6eGdiW.jpg" alt="">
     </div>
   </div>
 
@@ -415,8 +415,8 @@
 
 <style>
 @media (max-width: 768px) {
-  .orb-catalog { width: 200px !important; height: 200px !important; }
-  .orb-catalog img { width: 200px !important; height: 200px !important; }
+  .orb-catalog { width: 240px !important; height: 240px !important; }
+  .orb-catalog img { width: 240px !important; height: 240px !important; }
 }
 </style>
 </body>
